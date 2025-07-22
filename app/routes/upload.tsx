@@ -6,10 +6,9 @@ import { useNavigate } from 'react-router';
 import { convertPdfToImage } from '~/lib/pdf2image';
 import { generateUUID } from '~/lib/utils';
 import { prepareInstructions } from 'constants/index';
-import { json } from 'stream/consumers';
 
 const Upload = () => {
-    const { auth, isLoading, fs, ai, kv } = usePuterStore();
+    const { fs, ai, kv } = usePuterStore();
     const navigate = useNavigate();
     const [isProcessing, SetIsProcessing] = useState(false);
     const [statusText, SetStatusText] = useState('');

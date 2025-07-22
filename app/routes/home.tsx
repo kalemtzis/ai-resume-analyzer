@@ -4,6 +4,7 @@ import Navbar from "~/components/Navbar";
 import { usePuterStore } from "~/lib/puter";
 import { Link, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
+import Footer from "~/components/Footer";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -31,6 +32,8 @@ export default function Home() {
       setResumes(parsedResumes || []);
       setLoadingResumes(false);
     }
+
+    loadResumes();
   }, [])
 
   useEffect(() => {
@@ -71,5 +74,7 @@ export default function Home() {
         </div>
       )}
     </section>
+    
+    <Footer />
   </main>
 }

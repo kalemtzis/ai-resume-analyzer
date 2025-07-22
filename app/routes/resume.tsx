@@ -57,6 +57,9 @@ const Resume = () => {
                     <img src="/icons/back.svg" alt="logo" className="w-2.5 h-2.5" />
                     <span className="text-gray-800 text-sm font-semibold">Back to Homepage</span>
                 </Link>
+                <Link to='/upload' className="primary-button w-fit text-sm font-semibold">
+                    Upload another Resume
+                </Link>
             </nav>
 
             <div className="flex flex-row w-full max-lg:flex-col-reverse">
