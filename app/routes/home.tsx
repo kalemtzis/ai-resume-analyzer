@@ -40,7 +40,7 @@ export default function Home() {
     if (!auth.isAuthenticated) navigate('/auth?next=/');
   }, [auth.isAuthenticated])
 
-  return <main className="bg-[url('/images/bg-main.svg')] bg-cover">
+  return <main className="bg-[url('/images/bg-main.svg')] bg-cover flex flex-col justify-between">
     <Navbar />
 
     <section className="main-section">

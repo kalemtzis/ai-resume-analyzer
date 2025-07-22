@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react';
+import { useEffect, useState, type FormEvent } from 'react';
 import Navbar from '../components/Navbar';
 import FileUploader from '~/components/FileUploader';
 import { usePuterStore } from '~/lib/puter';
@@ -7,12 +7,21 @@ import { convertPdfToImage } from '~/lib/pdf2image';
 import { generateUUID } from '~/lib/utils';
 import { prepareInstructions } from 'constants/index';
 
+export const meta = () => ([
+    { title: 'Resumind | Upload' },
+    { name: 'description', content: 'Upload resume to analyze' },
+])
+
 const Upload = () => {
-    const { fs, ai, kv } = usePuterStore();
+    const { auth, fs, ai, kv } = usePuterStore();
     const navigate = useNavigate();
     const [isProcessing, SetIsProcessing] = useState(false);
     const [statusText, SetStatusText] = useState('');
     const [file, setFile] = useState<File | null>(null);
+
+    useEffect(() => {
+        if (!auth.isAuthenticated) navigate('/auth?next=/')
+    }, [auth.isAuthenticated])
 
     const handleFileSelect = (file: File | null) => {
         setFile(file)
@@ -92,7 +101,7 @@ const Upload = () => {
         <main className="bg-[url('/images/bg-main.svg')] bg-cover">
             <Navbar />
 
-            <section className='main-section'>
+            <section className='main-section animate-in fade-in duration-1000'>
                 <div className='page-heading py-16'>
                     <h1>Smart feedback for your dream job</h1>
                     {isProcessing ? (

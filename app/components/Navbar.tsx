@@ -1,6 +1,5 @@
 import { Link, useLocation } from "react-router";
 import { usePuterStore } from "~/lib/puter";
-import Contact from '../routes/contact';
 
 const Navbar = () => {
     const { auth } = usePuterStore();
@@ -12,12 +11,15 @@ const Navbar = () => {
                 <p className="text-2xl font-bold text-gradient">RESUMIND</p>
             </Link>
             <section className="flex flex-row items-center justify-center gap-4">
+                {auth.isAuthenticated && location.pathname !== '/profile' &&
+                    <Link to='/profile' className="primary-button w-fit">Profile</Link>
+                }
                 {location.pathname !== '/upload' &&
                     <Link className="primary-button w-fit" to='/upload'>
                         Upload Resume
                     </Link>
                 }
-                {auth.isAuthenticated &&
+                {auth.isAuthenticated && location.pathname !== '/contact' &&
                     <Link to='/contact' className="primary-button w-fit">
                         Contact Us
                     </Link>

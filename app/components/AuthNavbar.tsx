@@ -4,7 +4,7 @@ const AuthNavbar = () => {
     const { auth } = usePuterStore();
 
     return (
-        <nav className="navbar gradient-border shadow-lg bg-gray-100">
+        <nav className="navbar gradient-border shadow-lg">
             <p className="text-2xl font-bold flex flex-col items-center justify-center text-gradient">
                 RESUMIND
             </p>

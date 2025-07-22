@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { formatSize } from "~/lib/utils";
 
@@ -15,10 +15,10 @@ const FileUploader = ({ onFileSelect } : FileUploaderProps) => {
 
     const maxFileSize = 20 * 1024 * 1024;
 
-    const { getRootProps, getInputProps, isDragActive, acceptedFiles } = useDropzone({ 
+    const { getRootProps, getInputProps, acceptedFiles } = useDropzone({ 
         onDrop, 
         multiple: false, 
-        accept: { 'apliccation/pdf': ['.pdf']}, 
+        accept: { 'application/pdf': ['.pdf']}, 
         maxSize: maxFileSize, 
     })
 
@@ -26,11 +26,10 @@ const FileUploader = ({ onFileSelect } : FileUploaderProps) => {
 
     return (
         <div className="w-full gradient-border">
-            <div {...getRootProps()}>
+            <div {...getRootProps()} className="cursor-pointer">
+                <input {...getInputProps()} />
                 <div className="space-y-4 cursor-pointer">
-                    {
-                        file ?
-                        (
+                    {file ? (
                             <div className="uploader-selected-file" onClick={(e) => e.stopPropagation()}>
                                 <img src="/images/pdf.png" alt="pdf"  className="size-10" />
                                 <div className="flex items-center space-x-3">
@@ -49,8 +48,7 @@ const FileUploader = ({ onFileSelect } : FileUploaderProps) => {
                                     <img src="/icons/cross.svg" alt="remove" className="w-4 h-4"/>
                                 </button>
                             </div>
-                        ) :
-                        (
+                        ) : (
                             <div>
                                 <div className="mx-auto w-16 h-16 flex items-center justify-center mb-2">
                                     <img src="/icons/info.svg" alt="upload" className="size-20" />
