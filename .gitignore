@@ -5,6 +5,8 @@
 /.react-router/
 /build/
 
+/release/
+
 # Logs
 logs
 *.log
