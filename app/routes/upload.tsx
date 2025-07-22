@@ -8,7 +8,7 @@ import { generateUUID } from '~/lib/utils';
 import { prepareInstructions } from 'constants/index';
 
 export const meta = () => ([
-    { title: 'Resumind | Upload' },
+    { title: 'ioResume | Upload' },
     { name: 'description', content: 'Upload resume to analyze' },
 ])
 
@@ -93,7 +93,7 @@ const Upload = () => {
         const jobDescription = formData.get('job-description') as string;
 
         if (!file) return;
-
+        
         handleAnalyze({ companyName, jobTitle, jobDescription, file });
     }
 

@@ -1,4 +1,3 @@
-import ResumeCard from "~/components/ResumeCard";
 import type { Route } from "./+types/home";
 import Navbar from "~/components/Navbar";
 import { usePuterStore } from "~/lib/puter";
@@ -8,7 +7,7 @@ import Footer from "~/components/Footer";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Resumind" },
+    { title: "ioResume" },
     { name: "description", content: "Welcome to React Smart feedback for your dream job!" },
   ];
 }
@@ -54,17 +53,9 @@ export default function Home() {
         )}
       </div>
 
-      {loadingResumes && (
-        <div className="flex flex-col items-center justify-center">
-          <img src="/images/resume-scan-2.gif" className="w-[200px]" alt="scan" />
-        </div>
-      )}
-  
       {!loadingResumes && resumes.length > 0 && (
-        <div className="resumes-section">
-          {resumes.map((resume) => (
-            <ResumeCard key={resume.id} resume={resume} />
-          ))}
+        <div className="flex flex-col items-center justify-center mt-10 gap-4">
+          <Link to='/profile' className="primary-button w-fit text-xl font-semibold">See your analyzed resumes</Link>
         </div>
       )}
 

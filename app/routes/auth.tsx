@@ -5,7 +5,7 @@ import { usePuterStore } from "~/lib/puter";
 import Footer from '~/components/Footer';
 
 export const meta = () => ([
-    { title: 'Resumind | Auth' },
+    { title: 'ioResume | Auth' },
     { name: 'description', content: 'Log into your account' },
 ])
 

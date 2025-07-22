@@ -6,7 +6,7 @@ import Navbar from "~/components/Navbar";
 import { usePuterStore } from "~/lib/puter";
 
 export const meta = () => ([
-    { title: 'Resumind | Contact' },
+    { title: 'ioResume | Contact' },
     { name: 'description', content: 'Contact Us' },
 ])
 

@@ -1,36 +1,37 @@
-import React, { useState, type FormEvent } from "react";
+import { type FormEvent } from "react";
 import { useNavigate } from "react-router";
+import Swal from "sweetalert2";
 
 const ContactForm = () => {
-    const [formData, setFormData] = useState({
-        email: '',
-        subject: '',
-        message: '',
-    });
-    const [errors, setErrors] = useState({
-        email: '',
-        subject: '',
-    })
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [submitStatus, setSubmitStatus] = useState<null | 'success' | 'error'>(null);
     const navigate = useNavigate();
 
-    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        const form = e.currentTarget.closest('form');
-        if (!form) return;
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        const ACCESS_KEY = 'c2f7b7bc-fe38-4d1d-8b30-feb4fe53fca9';
 
-        const formData = new FormData(form);
+        formData.append('access_key', ACCESS_KEY);
 
-        if(!formData) return;
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
 
-        const email = formData.get('email');
-        const subject = formData.get('subject');
-        const message = formData.get('message');
+        const res = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+                "Content-Type": 'application/json',
+                Accept: 'application/json'
+            },
+            body: json
+        }).then((res) => res.json());
 
-        console.log(email, subject, message)
-
-        navigate('/')
+        if(res.success) {
+            Swal.fire({
+                title: "Good job!",
+                text: "You clicked the button!",
+                icon: "success"
+            });
+            navigate('/')
+        }
     }
 
     return (
@@ -42,11 +43,11 @@ const ContactForm = () => {
                 <form id="contact-form" onSubmit={handleSubmit} className="space-y-8">
                     <div className="form-div">
                         <label htmlFor="email">Your email <span className="text-red-600">*</span></label>
-                        <input type="email" id="email" placeholder="name@gmail.com" required />
+                        <input name='email' type="email" id="email" placeholder="name@gmail.com" required />
                     </div>
                     <div className="form-div">
                         <label htmlFor="subject">Subject <span className="text-red-600">*</span></label>
-                        <input type="text" id="subject" placeholder="Let us know how we can help you" required />
+                        <input name='subject' type="text" id="subject" placeholder="Let us know how we can help you" required />
                     </div>
                     <div className="form-div">
                         <label htmlFor="message">Your message</label>

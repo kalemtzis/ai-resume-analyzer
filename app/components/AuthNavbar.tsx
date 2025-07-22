@@ -6,7 +6,7 @@ const AuthNavbar = () => {
     return (
         <nav className="navbar gradient-border shadow-lg">
             <p className="text-2xl font-bold flex flex-col items-center justify-center text-gradient">
-                RESUMIND
+                ioResume
             </p>
             <p className="text-sm h-fit italic font-semibold">
                 Track your Applications & Resume Ratings
