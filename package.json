@@ -2,16 +2,11 @@
   "name": "ai-resume-analyzer",
   "private": true,
   "type": "module",
-  "main": "electron.cjs",
   "scripts": {
     "build": "react-router build",
     "dev": "react-router dev",
     "start": "react-router-serve ./build/server/index.js",
-    "typecheck": "react-router typegen && tsc",
-    "electron": "electron electron.cjs",
-    "electron:start": "npx react-router-serve ./build/server/index.js --port 3000",
-    "start:serve": "REACT_ROUTER_SERVE_PORT=3000 react-router-serve ./build/server/index.js",
-    "package": "electron-packager . ai-resume-analyzer --overwrite --platform=linux --arch=x64 --out=release --icon=icon.ico"
+    "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
     "@react-router/node": "^7.7.0",
