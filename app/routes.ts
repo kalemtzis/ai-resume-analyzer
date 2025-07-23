@@ -8,4 +8,5 @@ export default [
     route('/wipe', 'routes/wipe.tsx'),
     route('/contact', 'routes/contact.tsx'),
     route('/profile', 'routes/profile.tsx'),
+    route('/generate', 'routes/generate.tsx')
 ] satisfies RouteConfig;
