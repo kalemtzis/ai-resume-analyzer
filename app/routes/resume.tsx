@@ -10,6 +10,12 @@ export const meta = () => ([
     { name: 'description', content: 'Detailed overview of your resume' },
 ])
 
+interface ResumeData {
+    imageUrl: string,
+    resumeUrl: string,
+    feedback: Feedback | null,
+}
+
 const Resume = () => {
     const { auth, isLoading, fs, kv } = usePuterStore();
     const { id } = useParams();
@@ -17,6 +23,8 @@ const Resume = () => {
     const [resumeUrl, setResumeUrl] = useState('');
     const [feedback, setFeedback] = useState<Feedback | null>(null);
     const navigate = useNavigate();
+
+    const [resumeData, setResumeData] = useState<ResumeData | null>(null);
 
     useEffect(() => {
         if (!isLoading && !auth.isAuthenticated) navigate(`/auth?next=/resume${id}`);

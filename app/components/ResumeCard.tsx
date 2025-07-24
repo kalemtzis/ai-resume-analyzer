@@ -4,9 +4,9 @@ import ScoreCircle from "~/components/ScoreCircle";
 import { usePuterStore } from "~/lib/puter";
 
 const ResumeCard = ({ resume: { id, companyName, jobTitle, feedback, imagePath } }: { resume: Resume}) => {
-    const { fs } = usePuterStore();
-
+    const { fs, kv } = usePuterStore();
     const [resumeUrl, setResumeUrl] = useState('');
+    const [hovered, setHovered] = useState(false);
     
     useEffect(() => {
         const loadResume = async () => {
@@ -21,8 +21,12 @@ const ResumeCard = ({ resume: { id, companyName, jobTitle, feedback, imagePath }
         loadResume();
     }, [imagePath])
 
+    const handleDelete = () => {
+
+    }
+
     return (
-            <Link to={`/resume/${id}`} className="resume-card amimate-in fade-in duration-1000 on-hover">
+            <Link to={`/resume/${id}`} className="resume-card amimate-in fade-in duration-1000 on-hover" onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} >
                 <div className="resume-card-header">
                     <div className="flex flex-col gap-2">
                         {companyName && 
@@ -37,6 +41,11 @@ const ResumeCard = ({ resume: { id, companyName, jobTitle, feedback, imagePath }
                         }
                         {!companyName && !jobTitle &&
                             <h2 className="!text-black font-bold">Resume</h2>
+                        }
+                        {hovered &&
+                            <button className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 cursor-pointer w-fit" onClick={handleDelete}>
+                                Delete
+                            </button>
                         }
                     </div>
                     <div className="flax-shrink-0">
